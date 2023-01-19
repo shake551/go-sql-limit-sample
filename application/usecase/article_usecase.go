@@ -9,6 +9,7 @@ import (
 
 type ArticleUseCase interface {
 	GetLimit(ctx context.Context, limit int64, offset int64) ([]model.Article, error)
+	Create(ctx context.Context, param model.ArticleParam) (*model.Article, error)
 }
 
 type articleUseCase struct {
@@ -21,4 +22,8 @@ func NewArticleUseCase(r repository.ArticleRepository) ArticleUseCase {
 
 func (u *articleUseCase) GetLimit(ctx context.Context, limit int64, offset int64) ([]model.Article, error) {
 	return u.ArticleRepository.GetLimit(ctx, limit, offset)
+}
+
+func (u *articleUseCase) Create(ctx context.Context, param model.ArticleParam) (*model.Article, error) {
+	return u.ArticleRepository.Create(ctx, param)
 }
