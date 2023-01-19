@@ -71,6 +71,7 @@ func createRouter() chi.Router {
 	})
 
 	mux.MethodFunc("GET", "/article", h.GetLimit)
+	mux.MethodFunc("POST", "/article", h.Create)
 
 	return mux
 }
