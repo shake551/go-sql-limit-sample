@@ -53,14 +53,14 @@ func (h *articleHandler) GetLimit(w http.ResponseWriter, r *http.Request) {
 		offset = o
 	}
 
-	cocktails, err := h.u.GetLimit(r.Context(), limit, offset)
+	articles, err := h.u.GetLimit(r.Context(), limit, offset)
 	if err != nil {
-		log.Printf("failed to get cocktails. err: %v", err)
+		log.Printf("failed to get article. err: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
 
-	b, err := json.Marshal(cocktails)
+	b, err := json.Marshal(articles)
 	if err != nil {
 		log.Printf("failed to parse json. err: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
